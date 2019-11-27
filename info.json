@@ -1,0 +1,11 @@
+{
+    "name": "biter-wars",
+    "version": "0.0.1",
+    "title": "Biter Wars",
+    "author": "You",
+    "contact": "",
+    "homepage": "",
+    "factorio_version": "0.17",
+    "dependencies": ["base >= 0.17"],
+    "description": "This mod adds in fire armor that leaves behind damaging fire as you walk around."
+}
