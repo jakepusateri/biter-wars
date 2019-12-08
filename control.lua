@@ -136,9 +136,9 @@ function start_game()
         player.teleport({starting_position.x, starting_position.y + 3},
                         player.surface)
     end
-    if num_players == 1 then
-        reset_force("enemy")
+    reset_force("enemy")
 
+    if num_players == 1 then
         game.connected_players[1].surface.create_entity(
             {
                 name = "biter-spawner2",
@@ -187,7 +187,7 @@ end)
 -- -- custom building - worm defense?
 -- -- play as queen? you die your force loses?
 -- gameplay
--- -- 'start' button that disables spawning until everyone can join
+-- -- clear corpses on restart
 -- -- tint units by team, red/blue/yellow/orange/purple/green/black/white (up to 8 players)
 -- -- -- this might require new entitities for each force, since dynamic tinting isn't a thing?
 -- further
