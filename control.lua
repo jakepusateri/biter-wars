@@ -38,7 +38,7 @@ end)
 function attack_position(position, player_index)
     local player = game.players[player_index]
     local unitList = player.surface.find_entities_filtered(
-                         {force = "player", type = "unit"})
+                         {force = player.force, type = "unit"})
     local unit_group = player.surface.create_unit_group({position = position, force = player.force})
     for k, entity in pairs(unitList) do
         entity.ai_settings.allow_try_return_to_spawner = false
@@ -108,6 +108,12 @@ function start_game()
     game.print(
         string.format('Starting a new round with %d players', num_players))
     for index, player in pairs(game.connected_players) do
+        if game.forces[player.name] == nil then
+            game.create_force(player.name)
+        end
+
+        player.force = game.forces[player.name]
+
         player.force.character_build_distance_bonus = 5000
         player.force.character_reach_distance_bonus = 5000
     
@@ -145,7 +151,7 @@ end
 function get_evo_from_score(score)
     local L = 1
     local e = math.exp(1)
-    local k = 1
+    local k = 0.5
     local x_0 = 1000
     return L / (1 + (math.pow(e, -k * (score - x_0))))
 end
