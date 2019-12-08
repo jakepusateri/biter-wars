@@ -19,7 +19,7 @@ recipe.name = "fire-armor"
 recipe.ingredients = {{"copper-plate", 200}, {"steel-plate", 50}}
 recipe.result = "fire-armor"
 
-data:extend{fireArmor, recipe}
+--data:extend{fireArmor, recipe}
 
 local biterTargetingRemote = table.deepcopy(
                                  data.raw.capsule["artillery-targeting-remote"])
@@ -32,42 +32,35 @@ local button = {
 }
 data:extend{button}
 
-data:extend{
-    {
-        type = "capsule",
-        name = "ZoomingReinvented_binoculars",
-        subgroup = "tool",
-        order = "z[binoculars]",
-        icons = {
-            {
-                icon = "__biter-wars__/graphics/binoculars.png",
-                icon_size = 32
-            }
-        },
-        capsule_action = {type = "artillery-remote", flare = "zoom-in-flare"},
-        flags = {},
-        stack_size = 1,
-        stackable = false
-    }, {
-        type = "recipe",
-        name = "ZoomingReinvented_binoculars-recipe",
-        enabled = true,
-        ingredients = {{"iron-plate", 1}},
-        result = "ZoomingReinvented_binoculars"
-    }, {
-        type = "artillery-flare",
-        name = "zoom-in-flare",
-        flags = {"placeable-off-grid", "not-on-map"},
-        map_color = {r = 0, g = 0, b = 0},
-        life_time = 1,
-        shots_per_flare = 0,
-        pictures = {
-            {
-                filename = "__biter-wars__/graphics/binoculars.png",
-                width = 1,
-                height = 1,
-                scale = 0
-            }
-        }
-    }
+local biterSpawner2 = {
+    type = "item",
+    name = "biter-spawner2",
+    icon = "__base__/graphics/icons/biter-spawner.png",
+    icon_size = 32,
+    subgroup = "production-machine",
+    order = "c[assembling-machine-3]",
+    place_result = "biter-spawner2",
+    stack_size = 1
 }
+
+local recipe2 = table.deepcopy(data.raw.recipe["heavy-armor"])
+recipe2.enabled = true
+recipe2.name = "biter-spawner2"
+recipe2.ingredients = {{"copper-plate", 1}}
+recipe2.result = "biter-spawner2"
+
+data:extend{biterSpawner2, recipe2}
+
+local biterAttackTarget = {
+    type = "item",
+    name = "biter-attack-target",
+    icon = "__base__/graphics/icons/artillery-targeting-remote.png",
+    icon_size = 32,
+    subgroup = "production-machine",
+    order = "c[assembling-machine-3]",
+    place_result = "biter-place-target",
+    stack_size = 1
+}
+
+
+data:extend{biterAttackTarget}

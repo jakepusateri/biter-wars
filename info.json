@@ -7,5 +7,5 @@
     "homepage": "",
     "factorio_version": "0.17",
     "dependencies": ["base >= 0.17"],
-    "description": "This mod adds in fire armor that leaves behind damaging fire as you walk around."
+    "description": "Biter Wars is a PVP RTS where each player controls a queen and directs their group of biters to destroy the other clans."
 }
