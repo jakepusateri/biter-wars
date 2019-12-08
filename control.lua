@@ -36,20 +36,22 @@ end)
 
 -- https://lua-api.factorio.com/latest/Concepts.html#Command
 function attack_position(position, player_index)
-    -- TODO LuaUnitGroup
     local player = game.players[player_index]
     local unitList = player.surface.find_entities_filtered(
                          {force = "player", type = "unit"})
+    local unit_group = player.surface.create_unit_group({position = position, force = player.force})
     for k, entity in pairs(unitList) do
         entity.ai_settings.allow_try_return_to_spawner = false
         entity.ai_settings.allow_destroy_when_commands_fail = false
-        entity.set_command({
-            type = defines.command.attack_area,
-            destination = position,
-            radius = 32,
-            distraction = defines.distraction.by_anything
-        })
+        unit_group.add_member(entity)
+        
     end
+    unit_group.set_command({
+        type = defines.command.attack_area,
+        destination = position,
+        radius = 32,
+        distraction = defines.distraction.by_anything
+    })
 end
 
 -- todo remove after testing
